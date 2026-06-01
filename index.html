@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A.S.T.R.A — Nova Geração</title>
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="astra.css">
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<div class="hud-corner hud-tl"></div>
+<div class="hud-corner hud-tr"></div>
+<div class="hud-corner hud-bl"></div>
+<div class="hud-corner hud-br"></div>
+
+<canvas id="bg-canvas"></canvas>
+
+<nav>
+  <div class="logo">
+    <div class="logo-dot"></div>
+    A.S.T.R.A
+    <span class="nav-tag">NOVA GERAÇÃO</span>
+  </div>
+  <div class="nav-right">
+    <a href="#features">Recursos</a>
+    <a href="#metrics">Dados</a>
+    <a href="#cta">Acesso</a>
+    <button class="btn-nav">↓ Baixar agora</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-label">SISTEMA INTELIGENTE v1.0</div>
+      <h1>
+        Uma <em>inteligência</em>
+        <span>feita para</span>
+        acompanhar você.
+      </h1>
+      <p class="hero-sub">
+        Conheça a A.S.T.R.A — um assistente refinado, rápido e pessoal.
+        Pensado para potencializar o seu dia a dia com elegância e precisão.
+      </p>
+      <div class="hero-btns">
+        <button class="btn-primary">↓ Baixar executável</button>
+        <button class="btn-ghost">Conhecer →</button>
+      </div>
+    </div>
+
+    <div class="sphere-wrap">
+      <div class="sphere-ring"></div>
+      <div class="sphere-ring"></div>
+      <div class="sphere-ring"></div>
+      <canvas id="sphere-canvas"></canvas>
+      <div class="sphere-stat stat1">
+        <span id="stat-proc">98.7%</span>precisão
+      </div>
+      <div class="sphere-stat stat2">
+        <span id="stat-resp">0.3s</span>resposta
+      </div>
+      <div class="sphere-stat stat3">
+        <span>ONLINE</span>status
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    SCROLL
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="features-inner">
+    <div class="section-label">O QUE ELA FAZ</div>
+
+    <!-- F1 -->
+    <div class="feature-row" id="f1">
+      <div class="feature-num">01</div>
+      <div class="feature-content right">
+        <div class="feature-tag">COGNIÇÃO ADAPTATIVA</div>
+        <h2 class="feature-title">
+          Aprende do jeito<br>
+          que <span class="accent">você pensa.</span>
+        </h2>
+        <p class="feature-body">
+          A.S.T.R.A não apenas responde — ela observa padrões,
+          antecipa necessidades e evolui em tempo real com base
+          no seu comportamento único.
+        </p>
+        <div class="diagonal-topics">
+          <div class="topic"><div class="topic-line"></div>Memória contextual de longo prazo com indexação vetorial</div>
+          <div class="topic"><div class="topic-line"></div>Perfil dinâmico que se atualiza a cada interação</div>
+          <div class="topic"><div class="topic-line"></div>Reconhecimento de humor e ajuste de tom automaticamente</div>
+          <div class="topic"><div class="topic-line"></div>Síntese de padrões entre sessões distintas</div>
+        </div>
+      </div>
+      <div class="feature-visual">
+        <canvas id="vis1" width="340" height="240"></canvas>
+      </div>
+    </div>
+
+    <!-- F2 -->
+    <div class="feature-row" id="f2">
+      <div class="feature-num">02</div>
+      <div class="feature-content left">
+        <div class="feature-tag">VELOCIDADE NEURAL</div>
+        <h2 class="feature-title">
+          Processamento em<br>
+          <span class="accent">frações de segundo.</span>
+        </h2>
+        <p class="feature-body">
+          Arquitetura otimizada para execução local com aceleração
+          por hardware. Zero latência percebida. Pensa na velocidade
+          que você precisa.
+        </p>
+        <div class="diagonal-topics">
+          <div class="topic"><div class="topic-line"></div>Motor de inferência rodando diretamente no seu dispositivo</div>
+          <div class="topic"><div class="topic-line"></div>Aceleração por GPU/NPU com fallback inteligente para CPU</div>
+          <div class="topic"><div class="topic-line"></div>Pipeline paralelo para tarefas simultâneas sem overhead</div>
+          <div class="topic"><div class="topic-line"></div>Startup em menos de 200ms — sempre pronta quando você precisar</div>
+        </div>
+      </div>
+      <div class="feature-visual">
+        <canvas id="vis2" width="340" height="240"></canvas>
+      </div>
+    </div>
+
+    <!-- F3 -->
+    <div class="feature-row" id="f3">
+      <div class="feature-num">03</div>
+      <div class="feature-content right">
+        <div class="feature-tag">PRIVACIDADE TOTAL</div>
+        <h2 class="feature-title">
+          Seus dados ficam<br>
+          <span class="accent">onde devem ficar.</span>
+        </h2>
+        <p class="feature-body">
+          Execução 100% local. Nenhum dado sai do seu dispositivo.
+          Sem servidores externos, sem telemetria, sem rastreamento.
+          Sua IA. Sua privacidade.
+        </p>
+        <div class="diagonal-topics">
+          <div class="topic"><div class="topic-line"></div>Criptografia end-to-end em toda a base de conhecimento local</div>
+          <div class="topic"><div class="topic-line"></div>Modo avião permanente — funciona sem nenhuma conexão</div>
+          <div class="topic"><div class="topic-line"></div>Auditoria de acesso com logs criptografados por chave pessoal</div>
+          <div class="topic"><div class="topic-line"></div>Open source — o código que roda em você é verificável</div>
+        </div>
+      </div>
+      <div class="feature-visual">
+        <canvas id="vis3" width="340" height="240"></canvas>
+      </div>
+    </div>
+
+    <!-- F4 -->
+    <div class="feature-row" id="f4">
+      <div class="feature-num">04</div>
+      <div class="feature-content left">
+        <div class="feature-tag">INTEGRAÇÃO TOTAL</div>
+        <h2 class="feature-title">
+          Conecta-se com<br>
+          <span class="accent">tudo que você usa.</span>
+        </h2>
+        <p class="feature-body">
+          API universal e sistema de plugins para integrar com
+          qualquer ferramenta, app ou fluxo de trabalho. A.S.T.R.A
+          se encaixa na sua vida — não o contrário.
+        </p>
+        <div class="diagonal-topics">
+          <div class="topic"><div class="topic-line"></div>Webhooks nativos para Notion, Obsidian, VS Code e mais 200+ apps</div>
+          <div class="topic"><div class="topic-line"></div>SDK aberto para criação de plugins personalizados em qualquer linguagem</div>
+          <div class="topic"><div class="topic-line"></div>Automação visual com interface drag-and-drop sem código</div>
+          <div class="topic"><div class="topic-line"></div>Voz, texto, imagem — multimodal por padrão em todos os fluxos</div>
+        </div>
+      </div>
+      <div class="feature-visual" style="height:420px">
+        <canvas id="vis4" width="420" height="420"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section id="metrics">
+  <div class="metrics-inner">
+    <div class="section-label">NÚMEROS QUE IMPORTAM</div>
+    <div class="metrics-grid">
+      <div class="metric-item" id="m1">
+        <div class="metric-val" data-target="98.7" data-suffix="%">0%</div>
+        <div class="metric-label">Precisão média</div>
+      </div>
+      <div class="metric-item" id="m2">
+        <div class="metric-val" data-target="0.3" data-suffix="s">0s</div>
+        <div class="metric-label">Tempo de resposta</div>
+      </div>
+      <div class="metric-item" id="m3">
+        <div class="metric-val" data-target="50" data-suffix="K+">0</div>
+        <div class="metric-label">Usuários ativos</div>
+      </div>
+      <div class="metric-item" id="m4">
+        <div class="metric-val" data-target="100" data-suffix="% local">0%</div>
+        <div class="metric-label">Privacidade garantida</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div style="position:absolute;inset:0;overflow:hidden">
+    <div class="cta-ring" style="animation-delay:0s"></div>
+    <div class="cta-ring" style="animation-delay:1.5s"></div>
+    <div class="cta-ring" style="animation-delay:3s"></div>
+  </div>
+  <div class="cta-inner" style="position:relative;z-index:1">
+    <div class="section-label" style="justify-content:center;margin-bottom:3rem">COMECE AGORA</div>
+    <h2 class="cta-title">
+      O futuro está
+      <span>disponível hoje.</span>
+    </h2>
+    <p class="cta-sub">
+      Junte-se a quem já experimenta uma inteligência que realmente
+      entende e evolui com você. Gratuito para sempre no plano pessoal.
+    </p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <button class="btn-primary" style="font-size:0.9rem;padding:1rem 2.5rem">↓ Baixar A.S.T.R.A</button>
+      <button class="btn-ghost" style="font-size:0.9rem;padding:1rem 2.5rem">Ver documentação</button>
+    </div>
+    <p style="margin-top:2rem;font-size:0.65rem;color:var(--muted);font-family:'Space Mono',monospace;letter-spacing:0.2em">
+      WINDOWS · MACOS · LINUX — VERSÃO 2.0.1
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div>© 2025 A.S.T.R.A. Todos os direitos reservados.</div>
+  <div style="display:flex;gap:2rem">
+    <span>Privacidade</span>
+    <span>Termos</span>
+    <span>GitHub</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:0.5rem">
+    <div class="status-dot"></div>
+    SISTEMA OPERACIONAL
+  </div>
+</footer>
+
+<script src="astra.js"></script>
+</body>
+</html>
