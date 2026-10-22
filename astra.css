@@ -104,14 +104,6 @@ body::after{
 
 .logo-mark{width:34px;height:32px;flex-shrink:0}
 
-.nav-tag{
-  font-size:0.8rem;letter-spacing:0.2em;
-  color:var(--accent);
-  border:1px solid var(--line-strong);
-  padding:0.25rem 0.65rem;border-radius:3px;
-  font-family:'Space Mono',monospace;
-}
-
 .nav-right{
   display:flex;align-items:center;gap:1.6rem;
   font-size:0.95rem;letter-spacing:0.1em;
@@ -123,19 +115,6 @@ body::after{
   transition:color 0.3s;
 }
 .nav-right a.nav-link:hover{color:var(--text)}
-
-.btn-nav{
-  display:inline-flex;align-items:center;white-space:nowrap;
-  min-height:46px;
-  border:1px solid var(--line-strong);
-  padding:0 1.4rem;
-  color:var(--text);text-decoration:none;
-  background:var(--surface);
-  font-family:'Oxanium',sans-serif;
-  font-size:0.95rem;font-weight:600;letter-spacing:0.1em;
-  cursor:pointer;transition:background 0.3s,border-color 0.3s;
-}
-.btn-nav:hover{background:var(--accent-soft);border-color:var(--accent)}
 
 .theme-toggle{
   width:46px;height:46px;border-radius:50%;
@@ -647,7 +626,6 @@ footer{
 @media (max-width:1100px){
   .top{padding:0.8rem 1.5rem}
   .nav-right{gap:1rem}
-  .nav-tag{display:none}
 }
 
 /* Tablets e celulares */
@@ -676,8 +654,6 @@ footer{
   .nav-link{display:none}
   .logo-name{letter-spacing:0.12em;font-size:1.05rem}
   .top{gap:0.6rem}
-  .btn-nav{padding:0 1rem;font-size:0.9rem}
-  .nav-extra{display:none}
   .hero-btns a{flex:1 1 100%}
   .hero-label{letter-spacing:0.15em;font-size:0.9rem}
   .logo-stat{font-size:0.75rem;padding:0.4rem 0.6rem}

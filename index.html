@@ -3,252 +3,309 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A.S.T.R.A — Nova Geração</title>
-<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<title>A.S.T.R.A — Seu computador, por voz</title>
+<meta name="description" content="A.S.T.R.A é uma IA que ajuda pessoas cegas a usar o computador: controle por conversa de voz, leitor de tela eficiente e gerenciador de arquivos.">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#07060c">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<script>
+/* Define o tema antes da página aparecer, para não piscar */
+(function(){
+  var t=null;
+  try{t=localStorage.getItem('astra-theme')}catch(e){}
+  if(t!=='light'&&t!=='dark'){
+    t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';
+  }
+  var d=document.documentElement;
+  d.setAttribute('data-theme',t);
+  d.classList.add('js');
+})();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="astra.css">
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursor-ring"></div>
+<a class="skip-link" href="#main">Ir para o conteúdo</a>
 
-<div class="hud-corner hud-tl"></div>
-<div class="hud-corner hud-tr"></div>
-<div class="hud-corner hud-bl"></div>
-<div class="hud-corner hud-br"></div>
+<!-- Logo em vetor, reutilizada no menu e no hero. Usa a cor do texto, por isso funciona nos dois temas -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="astra-logo" viewBox="0 0 100 95"><path fill="currentColor" d="M48.15 91.33C48.62 91.15 48.28 90.75 47.13 90.13C45.85 89.43 43.5 87.6 42.64 86.63C41.06 84.84 40.51 84.03 39.61 82.17C38.79 80.48 38.48 79.44 38.16 77.3C37.46 72.57 38.1 69.12 40.36 65.6C41.82 63.31 44.67 61.25 47.9 60.15C49.67 59.54 53.87 59.55 56.45 60.16C60.78 61.19 62.44 63.02 63.8 68.3C63.95 68.87 64.11 69.62 64.16 69.97C64.21 70.31 64.33 70.97 64.42 71.43C64.51 71.89 64.65 72.88 64.72 73.64C64.87 75.12 65.07 75.94 65.29 75.94C65.48 75.94 65.59 75.53 65.81 74.1C66.7 68.21 67.7 64.98 69.2 63.05C70.52 61.36 73.2 59.8 75.84 59.2C76.71 59 77.81 58.64 77.88 58.53C77.98 58.36 77.76 58.27 76.46 57.94C73.63 57.22 72.29 56.69 70.8 55.69C69.91 55.1 68.82 54.01 68.33 53.22C67.21 51.43 66.18 47.48 65.66 43.03C65.57 42.27 65.34 41.54 65.19 41.54C65.01 41.54 64.84 42.24 64.68 43.71C64.58 44.57 64.45 45.52 64.38 45.84C64.31 46.15 64.23 46.65 64.2 46.93C64.04 48.29 63.13 51.52 62.55 52.79C61.99 53.99 60.77 55.45 59.96 55.87C59.25 56.23 57.28 56.22 55.37 55.84C54.88 55.74 53.64 55.5 52.63 55.31C51.62 55.11 50.37 54.87 49.87 54.76C48.77 54.53 44.34 54.43 42.86 54.59C38.54 55.08 34.21 56.69 31.38 58.85C29.27 60.47 27.15 62.68 25.16 65.34C22.92 68.34 21.26 71.08 19.43 74.81C17.7 78.32 16.19 80.52 13.13 83.95C11.09 86.25 6.67 89.57 4.41 90.5C4.02 90.66 3.68 90.95 3.68 91.12C3.68 91.19 3.77 91.28 3.88 91.32C4.16 91.43 47.86 91.44 48.15 91.33ZM96.18 91.33C96.7 91.13 96.43 90.81 95.09 90.05C92.43 88.54 89.53 86.29 87.34 84.04C84.11 80.73 82.49 77.98 81.51 74.18C81.28 73.28 80.97 73.5 80.33 75.03C79.82 76.24 78.39 79.06 77.7 80.19C74.98 84.65 70.98 88.64 67.52 90.33C66.5 90.83 66.25 91.13 66.73 91.32C66.99 91.43 95.9 91.43 96.18 91.33ZM33.65 51.55C34.45 51.21 35.85 50.62 36.77 50.23C37.68 49.84 38.98 49.34 39.66 49.12C45.07 47.31 49.3 44.63 52.48 40.98C55.12 37.96 56.58 35.22 58.05 30.54C58.85 27.97 59.25 25.07 59.31 21.25C59.35 18.38 59.32 17.92 58.89 14.29C58.44 10.43 56.49 3.68 55.83 3.68C55.57 3.68 55.06 4.6 52.46 9.79C36.58 41.48 31.69 51.28 31.58 51.56C31.42 52.03 31.55 52.27 31.93 52.21C32.08 52.18 32.86 51.89 33.65 51.55Z"/></symbol>
+</svg>
 
-<canvas id="bg-canvas"></canvas>
+<div class="hud-corner hud-tl" aria-hidden="true"></div>
+<div class="hud-corner hud-tr" aria-hidden="true"></div>
+<div class="hud-corner hud-bl" aria-hidden="true"></div>
+<div class="hud-corner hud-br" aria-hidden="true"></div>
 
-<nav>
-  <div class="logo">
-    <div class="logo-dot"></div>
-    A.S.T.R.A
-    <span class="nav-tag">NOVA GERAÇÃO</span>
-  </div>
-  <div class="nav-right">
-    <a href="#features">Recursos</a>
-    <a href="#metrics">Dados</a>
-    <a href="#cta">Acesso</a>
-    <button class="btn-nav">↓ Baixar agora</button>
-  </div>
-</nav>
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
 
-<!-- HERO -->
-<section id="hero">
+<header class="top">
+  <a class="logo" href="#hero" aria-label="A.S.T.R.A — voltar ao início">
+    <svg class="logo-mark" aria-hidden="true" focusable="false"><use href="#astra-logo"/></svg>
+    <span class="logo-name">A.S.T.R.A</span>
+  </a>
+  <nav class="nav-right" aria-label="Principal">
+    <a class="nav-link" href="#features">Recursos</a>
+    <a class="nav-link" href="#metrics">Dados</a>
+    <a class="nav-link" href="#cta">Acesso</a>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Alternar entre tema claro e escuro">
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M5.3 18.7 7 17M17 7l1.7-1.7"/></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"/></svg>
+    </button>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- Hero -->
+<section id="hero" aria-labelledby="hero-title">
   <div class="hero-inner">
     <div class="hero-text">
-      <div class="hero-label">SISTEMA INTELIGENTE v1.0</div>
-      <h1>
+      <p class="hero-label">SISTEMA INTELIGENTE v1.0</p>
+      <h1 id="hero-title">
         Uma <em>inteligência</em>
         <span>feita para</span>
         acompanhar você.
       </h1>
       <p class="hero-sub">
-        Conheça a A.S.T.R.A — um assistente refinado, rápido e pessoal.
-        Pensado para potencializar o seu dia a dia com elegância e precisão.
+        A.S.T.R.A ajuda pessoas cegas a usar o computador com autonomia.
+        Você conversa por voz, ela lê a tela e organiza os seus arquivos.
       </p>
       <div class="hero-btns">
-        <button class="btn-primary">↓ Baixar executável</button>
-        <button class="btn-ghost">Conhecer →</button>
+        <a class="btn-primary" href="#cta" data-download>↓ Baixar executável</a>
+        <a class="btn-ghost" href="#features">Conhecer →</a>
       </div>
     </div>
 
-    <div class="sphere-wrap">
-      <div class="sphere-ring"></div>
-      <div class="sphere-ring"></div>
-      <div class="sphere-ring"></div>
-      <canvas id="sphere-canvas"></canvas>
-      <div class="sphere-stat stat1">
-        <span id="stat-proc">98.7%</span>precisão
+    <div class="logo-wrap">
+      <div class="logo-rings" aria-hidden="true">
+        <div class="logo-ring"></div>
+        <div class="logo-ring"></div>
+        <div class="logo-ring"></div>
       </div>
-      <div class="sphere-stat stat2">
-        <span id="stat-resp">0.3s</span>resposta
-      </div>
-      <div class="sphere-stat stat3">
-        <span>ONLINE</span>status
-      </div>
+      <svg class="hero-logo" role="img" aria-label="Logo da A.S.T.R.A" focusable="false"><use href="#astra-logo"/></svg>
+      <div class="logo-stat stat1"><span>98,7%</span>precisão</div>
+      <div class="logo-stat stat2"><span>0,3s</span>resposta</div>
+      <div class="logo-stat stat3"><span>Gratuita</span>plano pessoal</div>
     </div>
   </div>
 
-  <div class="scroll-hint">
-    SCROLL
+  <div class="scroll-hint" aria-hidden="true">
+    ROLAR
     <div class="scroll-line"></div>
   </div>
 </section>
 
-<!-- FEATURES -->
-<section id="features">
+<!-- Recursos -->
+<section id="features" aria-labelledby="features-label">
   <div class="features-inner">
-    <div class="section-label">O QUE ELA FAZ</div>
+    <h2 class="section-label" id="features-label">O QUE ELA FAZ</h2>
 
-    <!-- F1 -->
-    <div class="feature-row" id="f1">
-      <div class="feature-num">01</div>
+    <!-- Recurso 1 -->
+    <div class="feature-row flip" id="f1">
+      <div class="feature-num" aria-hidden="true">01</div>
       <div class="feature-content right">
-        <div class="feature-tag">COGNIÇÃO ADAPTATIVA</div>
-        <h2 class="feature-title">
-          Aprende do jeito<br>
-          que <span class="accent">você pensa.</span>
-        </h2>
+        <p class="feature-tag">CONTROLE POR VOZ</p>
+        <h3 class="feature-title">
+          Fale. O computador<br>
+          <span class="accent">faz o resto.</span>
+        </h3>
         <p class="feature-body">
-          A.S.T.R.A não apenas responde — ela observa padrões,
-          antecipa necessidades e evolui em tempo real com base
-          no seu comportamento único.
+          Abra programas, navegue na internet e escreva mensagens apenas
+          conversando. Sem mouse, sem decorar atalhos e sem precisar
+          enxergar a tela.
         </p>
-        <div class="diagonal-topics">
-          <div class="topic"><div class="topic-line"></div>Memória contextual de longo prazo com indexação vetorial</div>
-          <div class="topic"><div class="topic-line"></div>Perfil dinâmico que se atualiza a cada interação</div>
-          <div class="topic"><div class="topic-line"></div>Reconhecimento de humor e ajuste de tom automaticamente</div>
-          <div class="topic"><div class="topic-line"></div>Síntese de padrões entre sessões distintas</div>
-        </div>
+        <ul class="diagonal-topics" role="list">
+          <li class="topic"><div class="topic-line"></div>Comandos em linguagem natural, do jeito que você fala</li>
+          <li class="topic"><div class="topic-line"></div>Conversa contínua: ela lembra do que você acabou de pedir</li>
+          <li class="topic"><div class="topic-line"></div>Confirma em voz alta antes de ações importantes</li>
+          <li class="topic"><div class="topic-line"></div>Resposta falada clara, curta e sem rodeios</li>
+        </ul>
       </div>
       <div class="feature-visual">
-        <canvas id="vis1" width="340" height="240"></canvas>
+        <svg id="vis1" class="vis" viewBox="0 0 340 240" aria-hidden="true" focusable="false">
+          <circle class="v-soft" cx="170" cy="120" r="104"/>
+          <g class="v-bars"><rect style="--i:0" x="27.5" y="110.0" width="6" height="20" rx="3"/><rect style="--i:1" x="40.0" y="103.0" width="6" height="34" rx="3"/><rect style="--i:2" x="52.5" y="94.0" width="6" height="52" rx="3"/><rect style="--i:3" x="65.0" y="100.0" width="6" height="40" rx="3"/><rect style="--i:4" x="77.5" y="85.0" width="6" height="70" rx="3"/><rect style="--i:5" x="90.0" y="72.0" width="6" height="96" rx="3"/><rect style="--i:6" x="102.5" y="90.0" width="6" height="60" rx="3"/><rect style="--i:7" x="115.0" y="60.0" width="6" height="120" rx="3"/><rect style="--i:8" x="127.5" y="80.0" width="6" height="80" rx="3"/><rect style="--i:9" x="140.0" y="45.0" width="6" height="150" rx="3"/><rect style="--i:10" x="152.5" y="70.0" width="6" height="100" rx="3"/><rect style="--i:11" x="165.0" y="35.0" width="6" height="170" rx="3"/><rect style="--i:12" x="177.5" y="70.0" width="6" height="100" rx="3"/><rect style="--i:13" x="190.0" y="45.0" width="6" height="150" rx="3"/><rect style="--i:14" x="202.5" y="80.0" width="6" height="80" rx="3"/><rect style="--i:15" x="215.0" y="60.0" width="6" height="120" rx="3"/><rect style="--i:16" x="227.5" y="90.0" width="6" height="60" rx="3"/><rect style="--i:17" x="240.0" y="72.0" width="6" height="96" rx="3"/><rect style="--i:18" x="252.5" y="85.0" width="6" height="70" rx="3"/><rect style="--i:19" x="265.0" y="100.0" width="6" height="40" rx="3"/><rect style="--i:20" x="277.5" y="94.0" width="6" height="52" rx="3"/><rect style="--i:21" x="290.0" y="103.0" width="6" height="34" rx="3"/><rect style="--i:22" x="302.5" y="110.0" width="6" height="20" rx="3"/></g>
+        </svg>
       </div>
     </div>
 
-    <!-- F2 -->
+    <!-- Recurso 2 -->
     <div class="feature-row" id="f2">
-      <div class="feature-num">02</div>
+      <div class="feature-num" aria-hidden="true">02</div>
       <div class="feature-content left">
-        <div class="feature-tag">VELOCIDADE NEURAL</div>
-        <h2 class="feature-title">
-          Processamento em<br>
-          <span class="accent">frações de segundo.</span>
-        </h2>
+        <p class="feature-tag">LEITOR DE TELA</p>
+        <h3 class="feature-title">
+          Ela lê o que está<br>
+          <span class="accent">na tela por você.</span>
+        </h3>
         <p class="feature-body">
-          Arquitetura otimizada para execução local com aceleração
-          por hardware. Zero latência percebida. Pensa na velocidade
-          que você precisa.
+          Janelas, menus, botões e textos são lidos de forma objetiva,
+          na ordem em que importam. Nada fica de fora e nada é repetido
+          sem necessidade.
         </p>
-        <div class="diagonal-topics">
-          <div class="topic"><div class="topic-line"></div>Motor de inferência rodando diretamente no seu dispositivo</div>
-          <div class="topic"><div class="topic-line"></div>Aceleração por GPU/NPU com fallback inteligente para CPU</div>
-          <div class="topic"><div class="topic-line"></div>Pipeline paralelo para tarefas simultâneas sem overhead</div>
-          <div class="topic"><div class="topic-line"></div>Startup em menos de 200ms — sempre pronta quando você precisar</div>
-        </div>
+        <ul class="diagonal-topics" role="list">
+          <li class="topic"><div class="topic-line"></div>Lê janelas, menus, botões e campos de formulário</li>
+          <li class="topic"><div class="topic-line"></div>Descreve imagens e botões que não têm nome</li>
+          <li class="topic"><div class="topic-line"></div>Navegação rápida por títulos, links e regiões da página</li>
+          <li class="topic"><div class="topic-line"></div>Velocidade e voz ajustáveis ao seu ritmo</li>
+        </ul>
       </div>
       <div class="feature-visual">
-        <canvas id="vis2" width="340" height="240"></canvas>
+        <svg id="vis2" class="vis" viewBox="0 0 340 240" aria-hidden="true" focusable="false">
+          <rect class="v-line" x="16" y="30" width="232" height="180" rx="12"/>
+          <line class="v-line" x1="16" y1="58" x2="248" y2="58"/>
+          <circle class="v-fill" cx="34" cy="44" r="4"/><circle class="v-fill" cx="48" cy="44" r="4" opacity=".6"/><circle class="v-fill" cx="62" cy="44" r="4" opacity=".3"/>
+          <rect class="v-mute" x="40" y="80" width="150" height="8" rx="4"/>
+          <rect class="v-mute" x="40" y="102" width="110" height="8" rx="4"/>
+          <rect class="v-focus" x="28" y="114" width="208" height="28" rx="8"/>
+          <rect class="v-fill" x="40" y="124" width="170" height="8" rx="4"/>
+          <rect class="v-mute" x="40" y="156" width="90" height="8" rx="4"/>
+          <rect class="v-mute" x="40" y="178" width="130" height="8" rx="4"/>
+          <path class="v-wave" d="M264 108Q278 128 264 148"/>
+          <path class="v-wave" d="M278 96Q300 128 278 160"/>
+          <path class="v-wave" d="M292 84Q322 128 292 172"/>
+        </svg>
       </div>
     </div>
 
-    <!-- F3 -->
-    <div class="feature-row" id="f3">
-      <div class="feature-num">03</div>
+    <!-- Recurso 3 -->
+    <div class="feature-row flip" id="f3">
+      <div class="feature-num" aria-hidden="true">03</div>
       <div class="feature-content right">
-        <div class="feature-tag">PRIVACIDADE TOTAL</div>
-        <h2 class="feature-title">
-          Seus dados ficam<br>
-          <span class="accent">onde devem ficar.</span>
-        </h2>
+        <p class="feature-tag">GERENCIADOR DE ARQUIVOS</p>
+        <h3 class="feature-title">
+          Seus arquivos,<br>
+          <span class="accent">organizados por conversa.</span>
+        </h3>
         <p class="feature-body">
-          Execução 100% local. Nenhum dado sai do seu dispositivo.
-          Sem servidores externos, sem telemetria, sem rastreamento.
-          Sua IA. Sua privacidade.
+          Peça para encontrar, abrir, mover ou renomear qualquer arquivo.
+          Em vez de percorrer pastas uma a uma, você diz o que procura e
+          ela resolve.
         </p>
-        <div class="diagonal-topics">
-          <div class="topic"><div class="topic-line"></div>Criptografia end-to-end em toda a base de conhecimento local</div>
-          <div class="topic"><div class="topic-line"></div>Modo avião permanente — funciona sem nenhuma conexão</div>
-          <div class="topic"><div class="topic-line"></div>Auditoria de acesso com logs criptografados por chave pessoal</div>
-          <div class="topic"><div class="topic-line"></div>Open source — o código que roda em você é verificável</div>
-        </div>
+        <ul class="diagonal-topics" role="list">
+          <li class="topic"><div class="topic-line"></div>Busca por nome, tipo ou conteúdo: “ache a fatura de março”</li>
+          <li class="topic"><div class="topic-line"></div>Copia, move, renomeia e organiza pastas por comando</li>
+          <li class="topic"><div class="topic-line"></div>Lê documentos em voz alta e resume textos longos</li>
+          <li class="topic"><div class="topic-line"></div>Pede confirmação antes de apagar ou substituir algo</li>
+        </ul>
       </div>
       <div class="feature-visual">
-        <canvas id="vis3" width="340" height="240"></canvas>
+        <svg id="vis3" class="vis" viewBox="0 0 340 240" aria-hidden="true" focusable="false">
+          <path class="v-folder" d="M28 70a8 8 0 0 1 8-8h30l10 12h58a8 8 0 0 1 8 8v58a8 8 0 0 1-8 8H36a8 8 0 0 1-8-8Z"/>
+          <path class="v-folder" d="M212 150a8 8 0 0 1 8-8h30l10 12h14a8 8 0 0 1 8 8v36a8 8 0 0 1-8 8h-54a8 8 0 0 1-8-8Z" transform="translate(0 8)"/>
+          <g transform="translate(152 58)">
+            <path class="v-file" d="M0 6a6 6 0 0 1 6-6h24l14 14v42a6 6 0 0 1-6 6H6a6 6 0 0 1-6-6Z"/>
+            <path class="v-line" d="M30 0v14h14"/>
+            <rect class="v-mute" x="9" y="26" width="26" height="4" rx="2"/>
+            <rect class="v-mute" x="9" y="36" width="20" height="4" rx="2"/>
+            <rect class="v-fill" x="9" y="46" width="14" height="4" rx="2"/>
+          </g>
+          <path class="v-arrow" d="M174 134C186 160 214 168 244 174"/>
+          <path class="v-arrowhead" d="M232 164l14 10-16 8"/>
+        </svg>
       </div>
     </div>
 
-    <!-- F4 -->
+    <!-- Recurso 4 -->
     <div class="feature-row" id="f4">
-      <div class="feature-num">04</div>
+      <div class="feature-num" aria-hidden="true">04</div>
       <div class="feature-content left">
-        <div class="feature-tag">INTEGRAÇÃO TOTAL</div>
-        <h2 class="feature-title">
+        <p class="feature-tag">USO NO DIA A DIA</p>
+        <h3 class="feature-title">
           Conecta-se com<br>
           <span class="accent">tudo que você usa.</span>
-        </h2>
+        </h3>
         <p class="feature-body">
-          API universal e sistema de plugins para integrar com
-          qualquer ferramenta, app ou fluxo de trabalho. A.S.T.R.A
-          se encaixa na sua vida — não o contrário.
+          Navegador, e-mail, documentos e arquivos trabalham juntos em
+          uma única conversa. A.S.T.R.A se encaixa na sua rotina, não o
+          contrário.
         </p>
-        <div class="diagonal-topics">
-          <div class="topic"><div class="topic-line"></div>Webhooks nativos para Notion, Obsidian, VS Code e mais 200+ apps</div>
-          <div class="topic"><div class="topic-line"></div>SDK aberto para criação de plugins personalizados em qualquer linguagem</div>
-          <div class="topic"><div class="topic-line"></div>Automação visual com interface drag-and-drop sem código</div>
-          <div class="topic"><div class="topic-line"></div>Voz, texto, imagem — multimodal por padrão em todos os fluxos</div>
-        </div>
+        <ul class="diagonal-topics" role="list">
+          <li class="topic"><div class="topic-line"></div>Navega em sites e lê o conteúdo de forma limpa</li>
+          <li class="topic"><div class="topic-line"></div>Escreve, lê e responde e-mails por voz</li>
+          <li class="topic"><div class="topic-line"></div>Abre e edita documentos sem tocar no mouse</li>
+          <li class="topic"><div class="topic-line"></div>Voz, teclado e leitura de tela trabalhando juntos</li>
+        </ul>
       </div>
-      <div class="feature-visual" style="height:420px">
-        <canvas id="vis4" width="420" height="420"></canvas>
+      <div class="feature-visual tall">
+        <svg id="vis4" class="vis" viewBox="0 0 440 440" aria-hidden="true" focusable="false"><circle class="v-line" cx="220" cy="220" r="150" stroke-dasharray="2 6"/><line class="v-line" x1="220.0" y1="166.0" x2="220.0" y2="112.0"/><line class="v-line" x1="266.8" y1="193.0" x2="313.5" y2="166.0"/><line class="v-line" x1="266.8" y1="247.0" x2="313.5" y2="274.0"/><line class="v-line" x1="220.0" y1="274.0" x2="220.0" y2="328.0"/><line class="v-line" x1="173.2" y1="247.0" x2="126.5" y2="274.0"/><line class="v-line" x1="173.2" y1="193.0" x2="126.5" y2="166.0"/><circle class="v-node" cx="220.0" cy="70.0" r="40"/><text class="v-text" x="220.0" y="70.0">VOZ</text><circle class="v-node" cx="349.9" cy="145.0" r="40"/><text class="v-text" x="349.9" y="145.0">ARQUIVOS</text><circle class="v-node" cx="349.9" cy="295.0" r="40"/><text class="v-text" x="349.9" y="295.0">LEITOR</text><circle class="v-node" cx="220.0" cy="370.0" r="40"/><text class="v-text" x="220.0" y="370.0">NAVEGADOR</text><circle class="v-node" cx="90.1" cy="295.0" r="40"/><text class="v-text" x="90.1" y="295.0">E-MAIL</text><circle class="v-node" cx="90.1" cy="145.0" r="40"/><text class="v-text" x="90.1" y="145.0">DOCS</text><circle class="v-center" cx="220" cy="220" r="52"/><text class="v-text v-big" x="220" y="220">ASTRA</text></svg>
       </div>
     </div>
   </div>
 </section>
 
-<!-- METRICS -->
-<section id="metrics">
+<!-- Métricas -->
+<section id="metrics" aria-labelledby="metrics-label">
   <div class="metrics-inner">
-    <div class="section-label">NÚMEROS QUE IMPORTAM</div>
+    <h2 class="section-label" id="metrics-label">NÚMEROS QUE IMPORTAM</h2>
     <div class="metrics-grid">
       <div class="metric-item" id="m1">
-        <div class="metric-val" data-target="98.7" data-suffix="%">0%</div>
+        <div class="metric-val" aria-hidden="true" data-target="98.7" data-suffix="%">0%</div>
+        <span class="sr-only">98,7%</span>
         <div class="metric-label">Precisão média</div>
       </div>
       <div class="metric-item" id="m2">
-        <div class="metric-val" data-target="0.3" data-suffix="s">0s</div>
+        <div class="metric-val" aria-hidden="true" data-target="0.3" data-suffix="s">0s</div>
+        <span class="sr-only">0,3 segundos</span>
         <div class="metric-label">Tempo de resposta</div>
       </div>
       <div class="metric-item" id="m3">
-        <div class="metric-val" data-target="50" data-suffix="K+">0</div>
+        <div class="metric-val" aria-hidden="true" data-target="50" data-suffix="K+">0</div>
+        <span class="sr-only">Mais de 50 mil</span>
         <div class="metric-label">Usuários ativos</div>
       </div>
       <div class="metric-item" id="m4">
-        <div class="metric-val" data-target="100" data-suffix="% local">0%</div>
+        <div class="metric-val" aria-hidden="true" data-target="100" data-suffix="% local">0%</div>
+        <span class="sr-only">100% local</span>
         <div class="metric-label">Privacidade garantida</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section id="cta">
-  <div style="position:absolute;inset:0;overflow:hidden">
+<!-- Chamada final -->
+<section id="cta" aria-labelledby="cta-title">
+  <div class="cta-rings" aria-hidden="true">
     <div class="cta-ring" style="animation-delay:0s"></div>
     <div class="cta-ring" style="animation-delay:1.5s"></div>
     <div class="cta-ring" style="animation-delay:3s"></div>
   </div>
-  <div class="cta-inner" style="position:relative;z-index:1">
-    <div class="section-label" style="justify-content:center;margin-bottom:3rem">COMECE AGORA</div>
-    <h2 class="cta-title">
+  <div class="cta-inner">
+    <p class="section-label center">COMECE AGORA</p>
+    <h2 class="cta-title" id="cta-title">
       O futuro está
       <span>disponível hoje.</span>
     </h2>
     <p class="cta-sub">
-      Junte-se a quem já experimenta uma inteligência que realmente
-      entende e evolui com você. Gratuito para sempre no plano pessoal.
+      Junte-se a quem já usa uma inteligência que realmente entende
+      e evolui com você. Gratuito para sempre no plano pessoal.
     </p>
-    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
-      <button class="btn-primary" style="font-size:0.9rem;padding:1rem 2.5rem">↓ Baixar A.S.T.R.A</button>
-      <button class="btn-ghost" style="font-size:0.9rem;padding:1rem 2.5rem">Ver documentação</button>
+    <div class="cta-btns">
+      <a class="btn-primary big" href="#cta" data-download>↓ Baixar A.S.T.R.A</a>
+      <a class="btn-ghost big" href="#features" data-docs>Ver documentação</a>
     </div>
-    <p style="margin-top:2rem;font-size:0.65rem;color:var(--muted);font-family:'Space Mono',monospace;letter-spacing:0.2em">
-      WINDOWS · LINUX — VERSÃO 1.0.0
-    </p>
+    <p class="cta-note">WINDOWS · LINUX — VERSÃO 1.0.0</p>
   </div>
 </section>
 
+</main>
+
 <footer>
-  <div>© 2025 A.S.T.R.A. Todos os direitos reservados.</div>
-  <div style="display:flex;gap:2rem">
-    <span>Privacidade</span>
-    <span>Termos</span>
-    <span>GitHub</span>
-  </div>
-  <div style="display:flex;align-items:center;gap:0.5rem">
-    <div class="status-dot"></div>
-    SISTEMA OPERACIONAL
+  <div>© 2026 A.S.T.R.A. Todos os direitos reservados.</div>
+  <nav class="footer-links" aria-label="Rodapé">
+    <a href="#">Privacidade</a>
+    <a href="#">Termos</a>
+    <a href="https://github.com/here236/A.S.T.R.A-Site">GitHub</a>
+  </nav>
+  <div class="footer-status">
+    <div class="status-dot" aria-hidden="true"></div>
+    PRONTA PARA USO
   </div>
 </footer>
 
