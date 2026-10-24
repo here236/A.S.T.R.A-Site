@@ -33,7 +33,28 @@ function setTheme(theme, save) {
 }
 
 themeBtn.addEventListener('click', () => {
-  setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark', true);
+  const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+
+  if (!document.startViewTransition || reduceMotion) {
+    setTheme(next, true);
+    return;
+  }
+
+  const r = themeBtn.getBoundingClientRect();
+  const x = r.left + r.width / 2;
+  const y = r.top + r.height / 2;
+  const raio = Math.hypot(
+    Math.max(x, window.innerWidth - x),
+    Math.max(y, window.innerHeight - y)
+  );
+
+  const t = document.startViewTransition(() => setTheme(next, true));
+  t.ready.then(() => {
+    root.animate(
+      { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${raio}px at ${x}px ${y}px)`] },
+      { duration: 1200, easing: 'ease-in-out', pseudoElement: '::view-transition-new(root)' }
+    );
+  });
 });
 
 // Segue a preferência do sistema enquanto a pessoa não escolher manualmente
