@@ -87,7 +87,7 @@ body::before{
 /* Menu */
 .top{
   position:fixed;top:0;left:0;right:0;z-index:100;
-  padding:0.9rem 3rem;
+  padding:0.9rem max(3rem,calc((100% - 110rem)/2 - 2rem));
   display:flex;align-items:center;justify-content:space-between;
   background:var(--nav-bg);
   border-bottom:1px solid var(--line);
@@ -147,7 +147,7 @@ section{
   display:grid;
   grid-template-columns:1fr 1fr;
   align-items:center;
-  padding:0 5rem;
+  padding:0 max(5rem,calc((100% - 110rem)/2));
   gap:4rem;
 }
 
@@ -292,7 +292,7 @@ h1 em{
 
 .features-inner{
   width:100%;
-  padding:0 5rem;
+  padding:0 max(5rem,calc((100% - 110rem)/2));
 }
 
 .section-label{
@@ -447,7 +447,7 @@ h1 em{
   border-bottom:1px solid var(--line);
 }
 
-.metrics-inner{width:100%;padding:0 5rem}
+.metrics-inner{width:100%;padding:0 max(5rem,calc((100% - 110rem)/2))}
 
 .metrics-grid{
   display:grid;
@@ -538,7 +538,7 @@ h1 em{
 
 /* Rodapé */
 footer{
-  padding:2rem 5rem;
+  padding:2rem max(5rem,calc((100% - 110rem)/2));
   border-top:1px solid var(--line);
   display:flex;align-items:center;justify-content:space-between;
   gap:1.5rem;flex-wrap:wrap;
@@ -617,6 +617,11 @@ footer{
 @media (max-width:1100px){
   .top{padding:0.8rem 1.5rem}
   .nav-right{gap:1rem}
+}
+
+/* Telas muito grandes */
+@media (min-width:2200px){
+  html{font-size:112.5%}
 }
 
 /* Tablets e celulares */
