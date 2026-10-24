@@ -54,15 +54,6 @@ body::before{
   content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
   background:radial-gradient(60% 50% at 78% 32%,var(--glow),transparent 70%);
 }
-body::after{
-  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
-  background-image:
-    linear-gradient(var(--grid) 1px,transparent 1px),
-    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
-  background-size:64px 64px;
-  -webkit-mask-image:radial-gradient(ellipse at 60% 40%,#000 0%,transparent 75%);
-  mask-image:radial-gradient(ellipse at 60% 40%,#000 0%,transparent 75%);
-}
 
 /* Animação circular da troca de tema */
 ::view-transition-old(root),
