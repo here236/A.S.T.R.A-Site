@@ -2,6 +2,8 @@
 // Enquanto estiverem vazios, os botões rolam a página até a seção correspondente.
 const DOWNLOAD_URL = '';
 const DOCS_URL = '';
+// Repositório onde o instalador é publicado como Release
+const GITHUB_REPO = 'here236/A.S.T.R.A-Site';
 
 const root = document.documentElement;
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -178,3 +180,39 @@ function animateMetric(el) {
   }
   requestAnimationFrame(step);
 }
+
+// Contador de downloads real, lido das Releases do GitHub.
+// O item só aparece se houver um número maior que zero.
+async function loadDownloads() {
+  const item = document.getElementById('m3');
+  if (!item) return;
+
+  let total = null;
+  try {
+    const cached = JSON.parse(sessionStorage.getItem('astra-downloads') || 'null');
+    if (cached && Date.now() - cached.t < 600000) total = cached.n;
+  } catch (e) {}
+
+  if (total === null) {
+    try {
+      const res = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/releases?per_page=100`);
+      if (!res.ok) return;
+      const releases = await res.json();
+      total = releases.reduce(
+        (soma, r) => soma + r.assets.reduce((s, a) => s + a.download_count, 0), 0
+      );
+      try { sessionStorage.setItem('astra-downloads', JSON.stringify({ n: total, t: Date.now() })); } catch (e) {}
+    } catch (e) { return; }
+  }
+
+  if (!total) return;
+
+  const valEl = item.querySelector('.metric-val');
+  const srEl = item.querySelector('.sr-only');
+  const bruto = total >= 1000 ? Math.round(total / 100) / 10 : total;
+  valEl.dataset.target = bruto;
+  valEl.dataset.suffix = total >= 1000 ? 'K+' : '';
+  srEl.textContent = total.toLocaleString('pt-BR') + ' downloads';
+  item.hidden = false;
+}
+loadDownloads();
