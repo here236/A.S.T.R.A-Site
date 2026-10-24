@@ -2,16 +2,16 @@
 
 /* Tema claro é o padrão; o escuro é aplicado por data-theme="dark" */
 :root{
-  --bg:#ffffff;
-  --bg2:#f3f3f8;
-  --text:#0b0a12;
-  --muted:#4d4c61;
+  --bg:#eceef4;
+  --bg2:#f6f7fb;
+  --text:#14131c;
+  --muted:#4a4960;
   --accent:#4338ca;
   --accent-soft:rgba(67,56,202,0.10);
   --line:rgba(11,10,18,0.14);
   --line-strong:rgba(11,10,18,0.32);
   --surface:rgba(11,10,18,0.04);
-  --nav-bg:rgba(255,255,255,0.94);
+  --nav-bg:rgba(236,238,244,0.94);
   --btn-bg:#0b0a12;
   --btn-fg:#ffffff;
   --glow:rgba(67,56,202,0.10);

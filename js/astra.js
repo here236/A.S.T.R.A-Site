@@ -29,7 +29,7 @@ function setTheme(theme, save) {
   if (save) { try { localStorage.setItem('astra-theme', theme); } catch (e) {} }
   const dark = theme === 'dark';
   themeBtn.setAttribute('aria-label', dark ? 'Mudar para o tema claro' : 'Mudar para o tema escuro');
-  if (themeMeta) themeMeta.setAttribute('content', dark ? '#07060c' : '#ffffff');
+  if (themeMeta) themeMeta.setAttribute('content', dark ? '#07060c' : '#eceef4');
   readThemeColors();
   if (reduceMotion) drawBg();
 }

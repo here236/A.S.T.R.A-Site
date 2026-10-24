@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Termos de Uso — A.S.T.R.A</title>
+<meta name="description" content="Termos de uso da A.S.T.R.A, assistente de inteligência artificial para pessoas cegas usarem o computador.">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#07060c">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+
+<!-- Rascunho: preencher os campos destacados em amarelo no site antes de publicar -->
+
+<script>
+/* Define o tema antes da página aparecer, para não piscar */
+(function(){
+  var t=null;
+  try{t=localStorage.getItem('astra-theme')}catch(e){}
+  if(t!=='light'&&t!=='dark'){
+    t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';
+  }
+  var d=document.documentElement;
+  d.setAttribute('data-theme',t);
+  d.classList.add('js');
+})();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/astra.css">
+<link rel="stylesheet" href="/css/astra-legal.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Ir para o conteúdo</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="astra-logo" viewBox="0 0 100 95"><path fill="currentColor" d="M48.15 91.33C48.62 91.15 48.28 90.75 47.13 90.13C45.85 89.43 43.5 87.6 42.64 86.63C41.06 84.84 40.51 84.03 39.61 82.17C38.79 80.48 38.48 79.44 38.16 77.3C37.46 72.57 38.1 69.12 40.36 65.6C41.82 63.31 44.67 61.25 47.9 60.15C49.67 59.54 53.87 59.55 56.45 60.16C60.78 61.19 62.44 63.02 63.8 68.3C63.95 68.87 64.11 69.62 64.16 69.97C64.21 70.31 64.33 70.97 64.42 71.43C64.51 71.89 64.65 72.88 64.72 73.64C64.87 75.12 65.07 75.94 65.29 75.94C65.48 75.94 65.59 75.53 65.81 74.1C66.7 68.21 67.7 64.98 69.2 63.05C70.52 61.36 73.2 59.8 75.84 59.2C76.71 59 77.81 58.64 77.88 58.53C77.98 58.36 77.76 58.27 76.46 57.94C73.63 57.22 72.29 56.69 70.8 55.69C69.91 55.1 68.82 54.01 68.33 53.22C67.21 51.43 66.18 47.48 65.66 43.03C65.57 42.27 65.34 41.54 65.19 41.54C65.01 41.54 64.84 42.24 64.68 43.71C64.58 44.57 64.45 45.52 64.38 45.84C64.31 46.15 64.23 46.65 64.2 46.93C64.04 48.29 63.13 51.52 62.55 52.79C61.99 53.99 60.77 55.45 59.96 55.87C59.25 56.23 57.28 56.22 55.37 55.84C54.88 55.74 53.64 55.5 52.63 55.31C51.62 55.11 50.37 54.87 49.87 54.76C48.77 54.53 44.34 54.43 42.86 54.59C38.54 55.08 34.21 56.69 31.38 58.85C29.27 60.47 27.15 62.68 25.16 65.34C22.92 68.34 21.26 71.08 19.43 74.81C17.7 78.32 16.19 80.52 13.13 83.95C11.09 86.25 6.67 89.57 4.41 90.5C4.02 90.66 3.68 90.95 3.68 91.12C3.68 91.19 3.77 91.28 3.88 91.32C4.16 91.43 47.86 91.44 48.15 91.33ZM96.18 91.33C96.7 91.13 96.43 90.81 95.09 90.05C92.43 88.54 89.53 86.29 87.34 84.04C84.11 80.73 82.49 77.98 81.51 74.18C81.28 73.28 80.97 73.5 80.33 75.03C79.82 76.24 78.39 79.06 77.7 80.19C74.98 84.65 70.98 88.64 67.52 90.33C66.5 90.83 66.25 91.13 66.73 91.32C66.99 91.43 95.9 91.43 96.18 91.33ZM33.65 51.55C34.45 51.21 35.85 50.62 36.77 50.23C37.68 49.84 38.98 49.34 39.66 49.12C45.07 47.31 49.3 44.63 52.48 40.98C55.12 37.96 56.58 35.22 58.05 30.54C58.85 27.97 59.25 25.07 59.31 21.25C59.35 18.38 59.32 17.92 58.89 14.29C58.44 10.43 56.49 3.68 55.83 3.68C55.57 3.68 55.06 4.6 52.46 9.79C36.58 41.48 31.69 51.28 31.58 51.56C31.42 52.03 31.55 52.27 31.93 52.21C32.08 52.18 32.86 51.89 33.65 51.55Z"/></symbol>
+</svg>
+
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+<header class="top">
+  <a class="logo" href="index.html" aria-label="A.S.T.R.A — voltar ao início">
+    <svg class="logo-mark" aria-hidden="true" focusable="false"><use href="#astra-logo"/></svg>
+    <span class="logo-name">A.S.T.R.A</span>
+  </a>
+  <nav class="nav-right" aria-label="Principal">
+    <a class="nav-back" href="/index.html">← Voltar ao site</a>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Alternar entre tema claro e escuro">
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M5.3 18.7 7 17M17 7l1.7-1.7"/></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"/></svg>
+    </button>
+  </nav>
+</header>
+
+<main id="main" class="legal">
+  <h1>Termos de Uso</h1>
+  <p class="updated">Última atualização: <span class="fill">23 de outubro de 2026</span></p>
+
+  <nav class="toc" aria-label="Índice desta página">
+    <h2 class="toc-title">Nesta página</h2>
+    <ol>
+      <li><a href="#aceite">Aceitação dos termos</a></li>
+      <li><a href="#o-que-e">O que é a A.S.T.R.A</a></li>
+      <li><a href="#quem-pode">Quem pode usar</a></li>
+      <li><a href="#licenca">Licença de uso</a></li>
+      <li><a href="#uso-adequado">Uso adequado</a></li>
+      <li><a href="#acoes">Ações no seu computador e nos seus arquivos</a></li>
+      <li><a href="#limites-ia">Limites da inteligência artificial</a></li>
+      <li><a href="#disponibilidade">Disponibilidade e atualizações</a></li>
+      <li><a href="#propriedade">Propriedade intelectual</a></li>
+      <li><a href="#responsabilidade">Garantias e limitação de responsabilidade</a></li>
+      <li><a href="#privacidade">Privacidade</a></li>
+      <li><a href="#alteracoes">Alterações nestes termos</a></li>
+      <li><a href="#lei">Lei aplicável e foro</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ol>
+  </nav>
+
+  <div class="legal-summary" role="note">
+    <h2>Resumo rápido</h2>
+    <p>A A.S.T.R.A é gratuita no plano pessoal e ajuda você a usar o computador por voz. Use com responsabilidade, mantenha cópia dos seus arquivos importantes e lembre que uma inteligência artificial pode errar. O texto completo está abaixo.</p>
+  </div>
+
+  <section id="aceite">
+    <h2>1. Aceitação dos termos</h2>
+    <p>Ao baixar, instalar ou usar a A.S.T.R.A, ou ao navegar neste site, você concorda com estes Termos de Uso. Se não concordar, não use o programa nem o site.</p>
+  </section>
+
+  <section id="o-que-e">
+    <h2>2. O que é a A.S.T.R.A</h2>
+    <p>A A.S.T.R.A é um assistente de inteligência artificial feito para ajudar pessoas cegas a usar o computador. Ela reúne três funções principais:</p>
+    <ul>
+      <li>controle do computador por conversa de voz;</li>
+      <li>leitor de tela, que lê em voz alta o que aparece na tela;</li>
+      <li>gerenciador de arquivos, que encontra, abre, move, copia e renomeia arquivos por comando.</li>
+    </ul>
+    <p>O responsável pela A.S.T.R.A é <span class="fill">[NOME DO RESPONSÁVEL OU DO GRUPO, COM CNPJ SE HOUVER]</span>, chamado aqui de “nós”.</p>
+  </section>
+
+  <section id="quem-pode">
+    <h2>3. Quem pode usar</h2>
+    <p>Você precisa ter capacidade legal para aceitar estes termos. Menores de 18 anos só devem usar a A.S.T.R.A com a ciência e a autorização de um responsável.</p>
+  </section>
+
+  <section id="licenca">
+    <h2>4. Licença de uso</h2>
+    <p>Concedemos a você uma licença pessoal, gratuita, não exclusiva e revogável para instalar e usar a A.S.T.R.A nos seus próprios computadores, no plano pessoal.</p>
+    <p>Você não pode vender, alugar ou sublicenciar o programa, nem retirar avisos de autoria dele.</p>
+    <p><span class="fill">[CONFIRMAR: se o código for aberto, indique a licença, por exemplo MIT, e o link. Nesse caso, os termos dessa licença valem para o código. Se não for aberto, apague este parágrafo.]</span></p>
+    <p>Usos comerciais ou em empresas podem ter condições diferentes. Fale com a gente pelo contato abaixo.</p>
+  </section>
+
+  <section id="uso-adequado">
+    <h2>5. Uso adequado</h2>
+    <p>Você concorda em não usar a A.S.T.R.A para:</p>
+    <ul>
+      <li>violar leis ou direitos de outras pessoas;</li>
+      <li>acessar, copiar ou apagar arquivos e contas de terceiros sem autorização;</li>
+      <li>tentar quebrar, copiar de forma indevida, desmontar ou atacar o programa, quando a lei não permitir;</li>
+      <li>criar ou espalhar vírus, golpes ou outros programas maliciosos.</li>
+    </ul>
+  </section>
+
+  <section id="acoes">
+    <h2>6. Ações no seu computador e nos seus arquivos</h2>
+    <p>A A.S.T.R.A age no seu computador a partir dos seus comandos: abre programas, lê a tela e mexe em arquivos. Ela foi pensada para pedir confirmação antes de ações importantes, como apagar ou substituir algo, mas isso não elimina o risco de um comando ser entendido de forma errada.</p>
+    <p>Por isso, mantenha cópias de segurança dos arquivos importantes. Você é responsável pelos comandos que dá e por conferir o resultado de ações que não podem ser desfeitas.</p>
+  </section>
+
+  <section id="limites-ia">
+    <h2>7. Limites da inteligência artificial</h2>
+    <p>A A.S.T.R.A usa inteligência artificial, que pode errar. Ela pode entender mal uma fala, ler um texto de forma incompleta, descrever uma imagem de maneira imprecisa ou executar algo diferente do que você queria.</p>
+    <p>Não use a A.S.T.R.A como única fonte de informação em situações em que um erro possa causar dano grave, como decisões de saúde, financeiras, legais ou de segurança. Ela também não serve para chamar ajuda em emergências.</p>
+    <p>A A.S.T.R.A foi feita para somar ao seu leitor de tela e às ferramentas que você já usa, não para tornar obrigatória a troca delas.</p>
+  </section>
+
+  <section id="disponibilidade">
+    <h2>8. Disponibilidade e atualizações</h2>
+    <p>Podemos atualizar, mudar, suspender ou encerrar recursos do programa e do site a qualquer momento. Vamos procurar avisar mudanças relevantes, mas não garantimos que o serviço funcione sem interrupções ou sem falhas.</p>
+  </section>
+
+  <section id="propriedade">
+    <h2>9. Propriedade intelectual</h2>
+    <p>O nome A.S.T.R.A, a logo, os textos, as imagens e o programa pertencem a nós ou a quem nos licenciou, e são protegidos pela lei. Esta licença não transfere nenhum desses direitos para você.</p>
+    <p>Os arquivos, textos e conteúdos que você cria ou guarda continuam sendo seus.</p>
+  </section>
+
+  <section id="responsabilidade">
+    <h2>10. Garantias e limitação de responsabilidade</h2>
+    <p>A A.S.T.R.A é oferecida “como está”, sem garantia de que atenderá a todas as suas necessidades ou de que funcionará sem erros.</p>
+    <p>Dentro do que a lei permite, não respondemos por perdas indiretas, como perda de dados ou de lucros, decorrentes do uso ou da impossibilidade de uso do programa. Nada nestes termos exclui ou limita direitos que a lei garante a você, inclusive os previstos no Código de Defesa do Consumidor.</p>
+  </section>
+
+  <section id="privacidade">
+    <h2>11. Privacidade</h2>
+    <p>O tratamento de dados pessoais está descrito na nossa <a href="privacidade.html">Política de Privacidade</a>, que faz parte destes termos.</p>
+  </section>
+
+  <section id="alteracoes">
+    <h2>12. Alterações nestes termos</h2>
+    <p>Podemos alterar estes termos. A versão em vigor é sempre a publicada nesta página, com a data da última atualização no topo. Se a mudança for importante, vamos avisar de forma clara no site ou no programa. Continuar usando a A.S.T.R.A depois disso significa que você aceita a nova versão.</p>
+  </section>
+
+  <section id="lei">
+    <h2>13. Lei aplicável e foro</h2>
+    <p>Estes termos seguem as leis do Brasil. Para resolver qualquer conflito, fica eleito o foro do seu domicílio, quando você for consumidor, ou o foro da comarca de <span class="fill">[CIDADE/UF DO RESPONSÁVEL]</span> nos demais casos.</p>
+  </section>
+
+  <section id="contato">
+    <h2>14. Contato</h2>
+    <p>Dúvidas, pedidos ou problemas: <a href="mailto:EMAIL_AQUI"><span class="fill">[E-MAIL DE CONTATO]</span></a>.</p>
+  </section>
+
+  <p class="legal-other">Veja também: <a href="privacidade.html">Política de Privacidade</a></p>
+</main>
+
+<footer>
+  <div>© 2026 A.S.T.R.A. Todos os direitos reservados.</div>
+  <nav class="footer-links" aria-label="Rodapé">
+    <a href="privacidade.html">Privacidade</a>
+    <a href="termos.html">Termos</a>
+    <a href="https://github.com/here236/A.S.T.R.A-Site">GitHub</a>
+  </nav>
+  <div class="footer-status">
+    <div class="status-dot" aria-hidden="true"></div>
+    PRONTA PARA USO
+  </div>
+</footer>
+
+<script src="/js/astra.js"></script>
+</body>
+</html>
