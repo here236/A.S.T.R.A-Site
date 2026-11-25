@@ -1,0 +1,86 @@
+/* Página de documentação dos comandos */
+.docs{max-width:52rem}
+
+/* Números em destaque */
+.stats{
+  list-style:none;padding:0;margin:0 0 1.5rem;
+  display:flex;gap:1rem;flex-wrap:wrap;
+}
+.stats li{
+  flex:1 1 14rem;margin:0;
+  border:1px solid var(--line-strong);
+  background:var(--surface);
+  border-radius:8px;
+  padding:1.1rem 1.4rem;
+  font-size:1.05rem;color:var(--muted);
+}
+.stats strong{
+  display:block;
+  font-family:'Space Mono',monospace;
+  font-size:2.6rem;line-height:1.1;
+  color:var(--accent);
+}
+
+/* Passos numerados */
+.steps{padding-left:1.6rem}
+.steps li{padding-left:0.3rem}
+
+/* Tabelas de comandos */
+.docs table{
+  width:100%;
+  border-collapse:collapse;
+  margin:1rem 0 1.5rem;
+}
+.docs th,
+.docs td{
+  padding:0.85rem 1rem;
+  text-align:left;vertical-align:top;
+  border-bottom:1px solid var(--line);
+  font-size:1.05rem;line-height:1.6;
+}
+.docs thead th{
+  font-family:'Space Mono',monospace;
+  font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--accent);
+  border-bottom:2px solid var(--line-strong);
+}
+.docs tbody th{
+  width:46%;
+  font-weight:600;color:var(--text);
+}
+.docs td{color:var(--muted)}
+.docs tbody tr:hover{background:var(--surface)}
+.docs code{
+  font-family:'Space Mono',monospace;
+  font-size:0.9rem;
+  color:var(--text);
+  background:var(--accent-soft);
+  padding:0.15em 0.4em;border-radius:4px;
+  word-break:break-word;
+}
+
+.docs h3{
+  font-size:1.2rem;font-weight:700;
+  margin:2rem 0 0.6rem;
+}
+
+/* Avisos */
+.docs-note{
+  border:1px solid var(--line-strong);
+  background:var(--surface);
+  border-radius:8px;
+  padding:1rem 1.4rem 0.2rem;
+  margin:1.2rem 0;
+}
+
+@media (max-width:640px){
+  .docs th,.docs td{padding:0.7rem 0.6rem;font-size:1rem}
+  .docs tbody th{width:44%}
+  .stats strong{font-size:2.2rem}
+}
+
+/* Cabeçalho no celular: "← Voltar" cabe sem quebrar */
+.nav-back{white-space:nowrap}
+@media (max-width:640px){
+  .nav-back-extra{display:none}
+}

@@ -1,7 +1,7 @@
 // Links dos botões. Preencher com o endereço do instalador e da documentação.
 // Enquanto estiverem vazios, os botões rolam a página até a seção correspondente.
 const DOWNLOAD_URL = '';
-const DOCS_URL = '';
+const DOCS_URL = 'pages/documentacao.html';
 // Repositório onde o instalador é publicado como Release
 const GITHUB_REPO = 'here236/A.S.T.R.A-Site';
 
@@ -12,7 +12,7 @@ document.querySelectorAll('[data-download]').forEach(a => {
   if (DOWNLOAD_URL) { a.href = DOWNLOAD_URL; a.setAttribute('download', ''); }
 });
 document.querySelectorAll('[data-docs]').forEach(a => {
-  if (DOCS_URL) { a.href = DOCS_URL; a.target = '_blank'; a.rel = 'noopener'; }
+  if (DOCS_URL) { a.href = DOCS_URL; }
 });
 
 

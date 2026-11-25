@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documentação de comandos — A.S.T.R.A</title>
+<meta name="description" content="Lista dos comandos de voz da A.S.T.R.A: tela e navegação, arquivos, planilhas, pesquisas e IA local, com limites e boas práticas.">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#07060c">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+
+<script>
+/* Define o tema antes da página aparecer, para não piscar */
+(function(){
+  var t=null;
+  try{t=localStorage.getItem('astra-theme')}catch(e){}
+  if(t!=='light'&&t!=='dark'){
+    t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';
+  }
+  var d=document.documentElement;
+  d.setAttribute('data-theme',t);
+  d.classList.add('js');
+})();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/astra.css">
+<link rel="stylesheet" href="../css/astra-legal.css">
+<link rel="stylesheet" href="../css/astra-docs.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Ir para o conteúdo</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="astra-logo" viewBox="0 0 100 95"><path fill="currentColor" d="M48.15 91.33C48.62 91.15 48.28 90.75 47.13 90.13C45.85 89.43 43.5 87.6 42.64 86.63C41.06 84.84 40.51 84.03 39.61 82.17C38.79 80.48 38.48 79.44 38.16 77.3C37.46 72.57 38.1 69.12 40.36 65.6C41.82 63.31 44.67 61.25 47.9 60.15C49.67 59.54 53.87 59.55 56.45 60.16C60.78 61.19 62.44 63.02 63.8 68.3C63.95 68.87 64.11 69.62 64.16 69.97C64.21 70.31 64.33 70.97 64.42 71.43C64.51 71.89 64.65 72.88 64.72 73.64C64.87 75.12 65.07 75.94 65.29 75.94C65.48 75.94 65.59 75.53 65.81 74.1C66.7 68.21 67.7 64.98 69.2 63.05C70.52 61.36 73.2 59.8 75.84 59.2C76.71 59 77.81 58.64 77.88 58.53C77.98 58.36 77.76 58.27 76.46 57.94C73.63 57.22 72.29 56.69 70.8 55.69C69.91 55.1 68.82 54.01 68.33 53.22C67.21 51.43 66.18 47.48 65.66 43.03C65.57 42.27 65.34 41.54 65.19 41.54C65.01 41.54 64.84 42.24 64.68 43.71C64.58 44.57 64.45 45.52 64.38 45.84C64.31 46.15 64.23 46.65 64.2 46.93C64.04 48.29 63.13 51.52 62.55 52.79C61.99 53.99 60.77 55.45 59.96 55.87C59.25 56.23 57.28 56.22 55.37 55.84C54.88 55.74 53.64 55.5 52.63 55.31C51.62 55.11 50.37 54.87 49.87 54.76C48.77 54.53 44.34 54.43 42.86 54.59C38.54 55.08 34.21 56.69 31.38 58.85C29.27 60.47 27.15 62.68 25.16 65.34C22.92 68.34 21.26 71.08 19.43 74.81C17.7 78.32 16.19 80.52 13.13 83.95C11.09 86.25 6.67 89.57 4.41 90.5C4.02 90.66 3.68 90.95 3.68 91.12C3.68 91.19 3.77 91.28 3.88 91.32C4.16 91.43 47.86 91.44 48.15 91.33ZM96.18 91.33C96.7 91.13 96.43 90.81 95.09 90.05C92.43 88.54 89.53 86.29 87.34 84.04C84.11 80.73 82.49 77.98 81.51 74.18C81.28 73.28 80.97 73.5 80.33 75.03C79.82 76.24 78.39 79.06 77.7 80.19C74.98 84.65 70.98 88.64 67.52 90.33C66.5 90.83 66.25 91.13 66.73 91.32C66.99 91.43 95.9 91.43 96.18 91.33ZM33.65 51.55C34.45 51.21 35.85 50.62 36.77 50.23C37.68 49.84 38.98 49.34 39.66 49.12C45.07 47.31 49.3 44.63 52.48 40.98C55.12 37.96 56.58 35.22 58.05 30.54C58.85 27.97 59.25 25.07 59.31 21.25C59.35 18.38 59.32 17.92 58.89 14.29C58.44 10.43 56.49 3.68 55.83 3.68C55.57 3.68 55.06 4.6 52.46 9.79C36.58 41.48 31.69 51.28 31.58 51.56C31.42 52.03 31.55 52.27 31.93 52.21C32.08 52.18 32.86 51.89 33.65 51.55Z"/></symbol>
+</svg>
+
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+<header class="top">
+  <a class="logo" href="../index.html" aria-label="A.S.T.R.A — voltar ao início">
+    <svg class="logo-mark" aria-hidden="true" focusable="false"><use href="#astra-logo"/></svg>
+    <span class="logo-name">A.S.T.R.A</span>
+  </a>
+  <nav class="nav-right" aria-label="Principal">
+    <a class="nav-back" href="../index.html" aria-label="Voltar ao site">← Voltar<span class="nav-back-extra"> ao site</span></a>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Alternar entre tema claro e escuro">
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M5.3 18.7 7 17M17 7l1.7-1.7"/></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"/></svg>
+    </button>
+  </nav>
+</header>
+
+<main id="main" class="legal docs">
+  <h1>Documentação de comandos</h1>
+  <p class="updated">Referência de voz, arquivos, navegação e IA local. Atualizada em <time datetime="2026-11-25">25 de novembro de 2026</time></p>
+
+  <nav class="toc" aria-label="Índice desta página">
+    <h2 class="toc-title">Nesta página</h2>
+    <ol>
+      <li><a href="#como-usar">Como usar</a></li>
+      <li><a href="#modos">Modos de execução</a></li>
+      <li><a href="#tela">Tela e navegação</a></li>
+      <li><a href="#arquivos">Arquivos e documentos</a></li>
+      <li><a href="#planilhas">Planilhas e pesquisas</a></li>
+      <li><a href="#ia">O que a IA local pode fazer</a></li>
+      <li><a href="#seguranca">Limites e boas práticas</a></li>
+      <li><a href="#validacao">O que ainda precisa de validação</a></li>
+      <li><a href="#contato">Encontrou um problema?</a></li>
+    </ol>
+  </nav>
+
+  <ul class="stats" role="list">
+    <li><strong>36</strong> comandos tradicionais</li>
+    <li><strong>32</strong> ferramentas autorizadas à IA</li>
+  </ul>
+
+  <div class="legal-summary" role="note">
+    <h2>Antes de começar</h2>
+    <p>Esta página descreve a versão analisada da A.S.T.R.A em novembro de 2026. Os comandos tradicionais são os que já funcionam. Os exemplos da IA local mostram o que o programa foi planejado para fazer e não garantem que funcionem na sua instalação. A seção <a href="#validacao">“O que ainda precisa de validação”</a> lista o que ainda está sendo testado.</p>
+  </div>
+
+  <section id="como-usar">
+    <h2>1. Como usar</h2>
+    <ol class="steps">
+      <li>Diga <strong>“Ok Astra”</strong> seguido do comando. Por exemplo: “Ok Astra, leia a tela”. Também é possível chamar só por <strong>“Astra”</strong>.</li>
+      <li>Diga o nome, o assunto ou os valores na própria frase sempre que puder.</li>
+      <li>Quando a A.S.T.R.A pedir confirmação, diga <strong>“sim”</strong> para autorizar ou <strong>“não”</strong> para cancelar.</li>
+    </ol>
+    <p>As frases das tabelas abaixo são exemplos reconhecidos pelo programa. Use “Ok Astra” antes de cada uma.</p>
+  </section>
+
+  <section id="modos">
+    <h2>2. Modos de execução</h2>
+    <table>
+      <caption class="sr-only">Modos de execução</caption>
+      <thead><tr><th scope="col">Comando no terminal</th><th scope="col">O que faz</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><code>python -m voz.voz_principal</code></th><td>Modo normal, com microfone e voz.</td></tr>
+        <tr><th scope="row"><code>python -m voz.voz_principal --teclado</code></th><td>Você digita os comandos e ouve as respostas.</td></tr>
+        <tr><th scope="row"><code>python -m voz.voz_principal --teclado --sem-voz</code></th><td>Teste por texto, sem reprodução de áudio.</td></tr>
+      </tbody>
+    </table>
+    <p>Os comandos tradicionais não dependem do Ollama. A IA local (Qwen 2.5 1,5B) amplia a interpretação dos pedidos. A fala é feita pelo Kokoro, com a voz pf_dora, que não participa do planejamento.</p>
+  </section>
+
+  <section id="tela">
+    <h2>3. Tela e navegação</h2>
+    <table>
+      <caption class="sr-only">Comandos de tela e navegação</caption>
+      <thead><tr><th scope="col">Comando de voz (exemplo)</th><th scope="col">O que faz</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">“Leia a tela”</th><td>Captura a tela e lê o texto reconhecido por OCR.</td></tr>
+        <tr><th scope="row">“Abra o navegador”</th><td>Abre o navegador padrão na página do Google.</td></tr>
+        <tr><th scope="row">“Feche o navegador”</th><td>Pede confirmação e tenta fechar os navegadores suportados.</td></tr>
+        <tr><th scope="row">“Abra o bloco de notas”</th><td>Abre o Bloco de Notas do Windows.</td></tr>
+        <tr><th scope="row">“Abra o site youtube”</th><td>Abre o endereço do site no navegador.</td></tr>
+        <tr><th scope="row">“Pesquise receita de bolo”</th><td>Abre uma busca no Google pelo assunto informado.</td></tr>
+        <tr><th scope="row">“Pesquise no navegador Godot”</th><td>Abre a pesquisa no navegador.</td></tr>
+        <tr><th scope="row">“Que horas são?”</th><td>Informa a hora local do computador.</td></tr>
+        <tr><th scope="row">“Quem é você?”</th><td>Apresenta a identidade da A.S.T.R.A.</td></tr>
+        <tr><th scope="row">“Obrigado”</th><td>Responde ao agradecimento.</td></tr>
+        <tr><th scope="row">“Tchau”</th><td>Encerra a sessão da assistente.</td></tr>
+        <tr><th scope="row">“Ajuda”</th><td>Lista as funcionalidades conhecidas.</td></tr>
+      </tbody>
+    </table>
+    <p>Também há respostas fixas para saudações, como “bom dia”, “olá” e “tudo bem?”. Elas não entram na contagem dos 36 comandos.</p>
+  </section>
+
+  <section id="arquivos">
+    <h2>4. Arquivos e documentos</h2>
+    <p>A A.S.T.R.A trabalha nos locais permitidos pela configuração e mantém um arquivo em uso para edições.</p>
+    <table>
+      <caption class="sr-only">Comandos de arquivos e documentos</caption>
+      <thead><tr><th scope="col">Comando de voz (exemplo)</th><th scope="col">O que faz</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">“Crie a pasta fotos”</th><td>Cria uma pasta com o nome indicado.</td></tr>
+        <tr><th scope="row">“Crie um documento chamado relatório”</th><td>Cria um documento Word (.docx).</td></tr>
+        <tr><th scope="row">“Crie um arquivo de texto chamado notas”</th><td>Cria um arquivo de texto (.txt).</td></tr>
+        <tr><th scope="row">“Crie uma apresentação chamada projeto”</th><td>Cria uma apresentação PowerPoint (.pptx).</td></tr>
+        <tr><th scope="row">“Adicione um slide chamado Introdução”</th><td>Adiciona um slide à apresentação em uso.</td></tr>
+        <tr><th scope="row">“Escreva Este é meu projeto”</th><td>Acrescenta conteúdo ao arquivo em uso, conforme o formato dele.</td></tr>
+        <tr><th scope="row">“Leia o documento”</th><td>Lê o conteúdo do arquivo em uso.</td></tr>
+        <tr><th scope="row">“Abra o arquivo relatório”</th><td>Seleciona um arquivo existente para uso ou edição.</td></tr>
+        <tr><th scope="row">“Liste os arquivos em documentos”</th><td>Lista os itens do local informado.</td></tr>
+        <tr><th scope="row">“Exclua o arquivo notas”</th><td>Pede confirmação e envia o item para a lixeira.</td></tr>
+      </tbody>
+    </table>
+    <h3>Onde os arquivos são salvos</h3>
+    <p>Por padrão, na pasta ASTRA do usuário. Você também pode dizer “na área de trabalho”, “em documentos” (subpasta ASTRA) ou “em downloads”, conforme os locais configurados. A criação não sobrescreve arquivos que já existem.</p>
+    <div class="docs-note" role="note"><p><strong>Dica:</strong> diga o nome já ao pedir a criação, por exemplo “Crie um documento chamado teste”. Na versão analisada, quando falta o nome, a pergunta feita pela A.S.T.R.A não garante a continuação automática da conversa.</p></div>
+  </section>
+
+  <section id="planilhas">
+    <h2>5. Planilhas e pesquisas</h2>
+    <p>Comandos para Excel, para consulta de informações e para criação de materiais com fontes.</p>
+    <table>
+      <caption class="sr-only">Comandos de planilhas e pesquisas</caption>
+      <thead><tr><th scope="col">Comando de voz (exemplo)</th><th scope="col">O que faz</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">“Crie uma planilha vendas com as colunas produto, quantidade e preço”</th><td>Cria uma planilha Excel (.xlsx) com os cabeçalhos.</td></tr>
+        <tr><th scope="row">“Adicione a linha teclado, 2, 100”</th><td>Acrescenta uma linha de valores à planilha em uso.</td></tr>
+        <tr><th scope="row">“Escreva na célula B2 5”</th><td>Altera o valor da célula indicada.</td></tr>
+        <tr><th scope="row">“Some a coluna quantidade”</th><td>Calcula o total da coluna indicada.</td></tr>
+        <tr><th scope="row">“Formate a planilha azul”</th><td>Aplica um tema de formatação. Opções: azul, verde, vermelho, laranja, roxo ou cinza.</td></tr>
+        <tr><th scope="row">“Como fazer uma página HTML?”</th><td>Pesquisa instruções e explica como fazer.</td></tr>
+        <tr><th scope="row">“Me ensine a criar um jogo 2D”</th><td>Pesquisa instruções sobre a tarefa pedida.</td></tr>
+        <tr><th scope="row">“Faça um documento sobre Godot”</th><td>Pesquisa o assunto e gera um documento com fontes.</td></tr>
+        <tr><th scope="row">“Faça uma planilha sobre planetas”</th><td>Pesquisa o assunto e gera uma planilha.</td></tr>
+        <tr><th scope="row">“Faça uma apresentação sobre energia solar”</th><td>Pesquisa o assunto e gera uma apresentação.</td></tr>
+        <tr><th scope="row">“Leia o resultado 1”</th><td>Lê o resultado indicado de uma pesquisa interna.</td></tr>
+        <tr><th scope="row">“Abra o resultado 1”</th><td>Abre a página do resultado indicado.</td></tr>
+        <tr><th scope="row">“Continue lendo”</th><td>Continua a leitura de um resultado.</td></tr>
+        <tr><th scope="row">“Repita os resultados”</th><td>Repete os resultados da pesquisa interna.</td></tr>
+      </tbody>
+    </table>
+    <p>A busca comum abre o Google, e os comandos de leitura de resultados dependem de uma pesquisa interna com resultados disponíveis. Pesquisas e acesso a sites exigem conexão com a internet.</p>
+  </section>
+
+  <section id="ia">
+    <h2>6. O que a IA local pode fazer</h2>
+    <p>Exemplos de pedidos em linguagem natural para o planejador integrado. Eles não são comandos fixos.</p>
+    <table>
+      <caption class="sr-only">Exemplos de pedidos para a IA local</caption>
+      <thead><tr><th scope="col">Pedido (exemplo)</th><th scope="col">O que o planejador faz</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">“Explique o que é o GitHub de forma simples.”</th><td>Responde a perguntas usando o modelo local, sem garantia de precisão.</td></tr>
+        <tr><th scope="row">“Preciso consultar documentação do Godot.”</th><td>Interpreta a intenção e seleciona uma ferramenta de navegação ou pesquisa.</td></tr>
+        <tr><th scope="row">“Quero organizar minhas anotações em um arquivo chamado estudos.”</th><td>Planeja a criação de um documento ou texto e a inclusão de conteúdo.</td></tr>
+        <tr><th scope="row">“Monte uma planilha para controlar minhas despesas, com data, descrição e valor.”</th><td>Planeja a criação de uma planilha com colunas personalizadas.</td></tr>
+        <tr><th scope="row">“Faça um material sobre energia solar com fontes.”</th><td>Escolhe uma ferramenta de pesquisa e de geração de arquivo.</td></tr>
+        <tr><th scope="row">“Resuma o texto que está aparecendo na tela.”</th><td>Solicita OCR e interpreta o texto retornado, se a integração encaminhar o resultado.</td></tr>
+        <tr><th scope="row">“Prepare uma apresentação sobre segurança digital.”</th><td>Planeja a criação de uma apresentação e a adição de slides e texto.</td></tr>
+      </tbody>
+    </table>
+    <h3>Combinação de ferramentas</h3>
+    <p>O planejador pode propor várias chamadas e receber os resultados para planejar os próximos passos. Antes de executar qualquer ferramenta, o executor valida o nome, os argumentos e a autorização.</p>
+    <div class="docs-note" role="note"><p><strong>Atenção:</strong> estes são cenários de uso pretendidos. Na versão disponível, a ligação do planejador ao fluxo de voz e a retomada depois de uma confirmação ainda não estão demonstradas de ponta a ponta. Pedidos que coincidam com um comando tradicional podem ser tratados por ele primeiro.</p></div>
+  </section>
+
+  <section id="seguranca">
+    <h2>7. Limites e boas práticas</h2>
+    <p>O modelo interpreta e planeja, e a A.S.T.R.A controla as operações reais.</p>
+    <ul>
+      <li><strong>Ferramentas autorizadas.</strong> 32 das 36 capacidades registradas estão disponíveis para a IA. Identidade, agradecimento, ajuda e encerramento continuam sendo comandos tradicionais.</li>
+      <li><strong>Confirmação.</strong> Fechar o navegador, excluir, formatar planilha, adicionar slide ou linha, escrever texto ou célula e gerar arquivos por pesquisa exigem confirmação. A criação simples de documentos não exige essa confirmação adicional.</li>
+      <li><strong>Proteção.</strong> O conteúdo de sites, de arquivos e do OCR não vale como autorização para executar ações. A IA não pode inventar ferramentas nem executar código ou comandos de terminal arbitrários.</li>
+      <li><strong>Confira o resultado.</strong> Se a A.S.T.R.A disser que criou um arquivo, verifique o local de destino. Uma execução sem erro nem sempre comprova que a operação foi concluída.</li>
+      <li><strong>A IA pode errar.</strong> O modelo local pode produzir informações incorretas.</li>
+    </ul>
+  </section>
+
+  <section id="validacao">
+    <h2>8. O que ainda precisa de validação</h2>
+    <ul>
+      <li>Continuidade da conversa ao pedir um nome ou uma confirmação.</li>
+      <li>Retomada segura de planos interrompidos e verificação de que o arquivo foi mesmo criado.</li>
+      <li>Interpretação confiável do OCR, que não equivale a uma visão completa de imagens.</li>
+      <li>Memória entre conversas e execução consistente de tarefas complexas.</li>
+      <li>Renomear e mostrar arquivos: os comandos foram declarados, mas não estão registrados nesta versão porque faltam os métodos correspondentes.</li>
+    </ul>
+  </section>
+
+  <section id="contato">
+    <h2>9. Encontrou um problema?</h2>
+    <p>Se um comando não funcionar como descrito aqui, ou se algo nesta página estiver confuso, escreva para <a href="mailto:astrasoft.enterprise@gmail.com"><span class="fill">astrasoft.enterprise@gmail.com</span></a>. Isso ajuda a melhorar a A.S.T.R.A.</p>
+  </section>
+
+  <p class="legal-other">Veja também: <a href="termos.html">Termos de Uso</a> e <a href="privacidade.html">Política de Privacidade</a></p>
+</main>
+
+<footer>
+  <div>© 2026 A.S.T.R.A. Todos os direitos reservados.</div>
+  <nav class="footer-links" aria-label="Rodapé">
+    <a href="privacidade.html">Privacidade</a>
+    <a href="termos.html">Termos</a>
+    <a href="https://github.com/here236/A.S.T.R.A-Site">GitHub</a>
+  </nav>
+  <div class="footer-status">
+    <div class="status-dot" aria-hidden="true"></div>
+    PRONTA PARA USO
+  </div>
+</footer>
+
+<script src="../js/astra.js"></script>
+</body>
+</html>

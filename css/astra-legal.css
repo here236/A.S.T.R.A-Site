@@ -122,3 +122,8 @@
   .legal h2{font-size:1.3rem}
   .legal p,.legal li{font-size:1.05rem}
 }
+
+.nav-back{white-space:nowrap}
+@media (max-width:640px){
+  .nav-back-extra{display:none}
+}
