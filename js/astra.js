@@ -15,6 +15,7 @@ document.querySelectorAll('[data-docs]').forEach(a => {
   if (DOCS_URL) { a.href = DOCS_URL; a.target = '_blank'; a.rel = 'noopener'; }
 });
 
+
 // Tema claro e escuro
 const themeBtn = document.getElementById('theme-toggle');
 const themeMeta = document.querySelector('meta[name="theme-color"]');
@@ -59,6 +60,7 @@ themeBtn.addEventListener('click', () => {
   });
 });
 
+
 // Segue a preferência do sistema enquanto a pessoa não escolher manualmente
 const mq = window.matchMedia('(prefers-color-scheme: light)');
 mq.addEventListener && mq.addEventListener('change', e => {
@@ -66,6 +68,7 @@ mq.addEventListener && mq.addEventListener('change', e => {
   try { saved = localStorage.getItem('astra-theme'); } catch (err) {}
   if (!saved) setTheme(e.matches ? 'light' : 'dark', false);
 });
+
 
 // Fundo de partículas, leve: poucas partículas, 30 quadros por segundo,
 // pausa quando a aba não está visível
@@ -147,6 +150,7 @@ setTheme(root.getAttribute('data-theme'), false);
 resize();
 startBg();
 
+
 // Aparecer ao rolar
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
@@ -158,6 +162,7 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: 0.2 });
 
 document.querySelectorAll('.feature-row,.metric-item').forEach(el => obs.observe(el));
+
 
 // Contagem das métricas, com formato brasileiro (98,7)
 function animateMetric(el) {
@@ -180,6 +185,43 @@ function animateMetric(el) {
   }
   requestAnimationFrame(step);
 }
+
+
+// Menu hambúrguer no celular
+const topo = document.querySelector('.top');
+const menuBtn = document.getElementById('menu-toggle');
+
+function setMenu(aberto) {
+  topo.classList.toggle('menu-open', aberto);
+  menuBtn.setAttribute('aria-expanded', String(aberto));
+  menuBtn.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
+}
+
+if (menuBtn) {
+  menuBtn.addEventListener('click', () => setMenu(!topo.classList.contains('menu-open')));
+
+  // Fecha ao escolher um link
+  document.querySelectorAll('.nav-right a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+  // Fecha com Esc, devolvendo o foco ao botão
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && topo.classList.contains('menu-open')) {
+      setMenu(false);
+      menuBtn.focus();
+    }
+  });
+
+  // Fecha ao tocar fora do menu
+  document.addEventListener('click', e => {
+    if (!topo.contains(e.target)) setMenu(false);
+  });
+
+  // Fecha ao voltar para tela larga
+  window.matchMedia('(min-width:641px)').addEventListener('change', e => {
+    if (e.matches) setMenu(false);
+  });
+}
+
 
 // Contador de downloads real, lido das Releases do GitHub.
 // O item só aparece se houver um número maior que zero.

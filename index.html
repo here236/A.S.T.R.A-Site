@@ -44,11 +44,18 @@
 
 <canvas id="bg-canvas" aria-hidden="true"></canvas>
 
-<header class="top">
+<header class="top has-menu">
   <a class="logo" href="#hero" aria-label="A.S.T.R.A — voltar ao início">
     <svg class="logo-mark" aria-hidden="true" focusable="false"><use href="#astra-logo"/></svg>
     <span class="logo-name">A.S.T.R.A</span>
   </a>
+
+<button class="menu-toggle" id="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+  <svg class="i-open" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+  <svg class="i-close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg>
+</button>
+<nav class="nav-right" id="menu-principal" aria-label="Principal">
+
   <nav class="nav-right" aria-label="Principal">
     <a class="nav-link" href="#features">Recursos</a>
     <a class="nav-link" href="#metrics">Dados</a>
@@ -56,6 +63,7 @@
     <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Alternar entre tema claro e escuro">
       <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M5.3 18.7 7 17M17 7l1.7-1.7"/></svg>
       <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"/></svg>
+      <span class="theme-label">Alternar tema</span>
     </button>
   </nav>
 </header>
